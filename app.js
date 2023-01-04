@@ -1,9 +1,11 @@
 const qrcode = require('qrcode-terminal');
-const { Client, RemoteAuth } = require('whatsapp-web.js');
+const { Client, RemoteAuth, MessageMedia } = require('whatsapp-web.js');
 
 // Require database
 const { MongoStore } = require('wwebjs-mongo');
 const mongoose = require('mongoose');
+const { chatAIHandler } = require('./features/chat_GPT');
+const { convertFotoToSticker } = require('./features/sticker');
 // mongoose.set('strictQuery', true);
 
 // Load the session data
@@ -13,16 +15,32 @@ mongoose.connect("mongodb+srv://allail:qadrillahsabikha@cluster0.yap4x3d.mongodb
     authStrategy: new RemoteAuth({
       store: store,
       backupSyncIntervalMs: 300000
-    })
+    }),
+    // Hapus komentar ini jika ngejalanin di server //
+    // puppeteer: {
+    //   headless: false,
+    //   args: ['--no-sandbox', '--disable-setuid-sandbox']
+    // }
   });
 
   client.on('message', async msg => {
-  const text = msg.body.toLowerCase() || '';
+    const text = msg.body.toLowerCase() || '';
 
-  //check status
-  if (text === 'hai') {
-    msg.reply('tuan');
-  }
+    //check status
+    if (text === 'status') {
+      msg.reply('OKE!');
+
+    } else if (text){
+      // handle chat ai
+      console.log("ai handler requests")
+      await chatAIHandler(text, client, msg)
+
+    } else if (msg.hasMedia){
+      // handle foto lalu ubah jadi sticker
+      console.log("convert foto to sticker handler")
+      convertFotoToSticker(client, msg, MessageMedia)
+    }
+
   });
 
   // Handle login process
@@ -40,8 +58,3 @@ mongoose.connect("mongodb+srv://allail:qadrillahsabikha@cluster0.yap4x3d.mongodb
 
   client.initialize();
 });
-
-// puppeteer: {
-//   headless: false,
-//     args: ['--no-sandbox', '--disable-setuid-sandbox']
-// }
