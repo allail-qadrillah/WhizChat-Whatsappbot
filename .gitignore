@@ -1,3 +1,9 @@
 .wwebjs_auth
 node_modules
 .vscode
+temp.txt
+
+.breakpoints
+.replit
+poetry.lock
+replit.nix

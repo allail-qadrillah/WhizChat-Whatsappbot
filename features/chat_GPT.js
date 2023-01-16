@@ -1,6 +1,5 @@
 //https://github.dev/try-catch-dev/BotWhatsapp
 const axios = require('axios')
-const { OPENAI_API_KEY } = require('../config')
 
 const chatGPTRequest = async (text) => {
   // tampung data
@@ -21,7 +20,7 @@ const chatGPTRequest = async (text) => {
     },
     headers: {
       "Content-Type": "application/json",
-      "Authorization": `Bearer ${OPENAI_API_KEY}`
+      "Authorization": `Bearer ${process.env['OPEN_API']}`
     }
   })// terima response dan kembalikan kedalam result
     .then((response) => {
@@ -43,7 +42,11 @@ const chatGPTRequest = async (text) => {
 }
 
 const chatAIHandler = async (text, client, msg) => {
-  const response = await chatGPTRequest(text)
+  var text = text.split(' ')
+  text.shift()
+  prompt = text.join(' ')
+    
+  const response = await chatGPTRequest(prompt)
 
   if (!response.success) {
     return client.sendMessage(msg.from, response.message);
