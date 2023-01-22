@@ -2,6 +2,7 @@
 node_modules
 .vscode
 temp.txt
+RemoteAuth.zip
 
 .breakpoints
 .replit

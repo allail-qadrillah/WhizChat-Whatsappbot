@@ -5,7 +5,6 @@ const { convertFotoToSticker } = require('./features/sticker');
 const { imageGeneratorAIHandler } = require('./features/textToImage');
 const express = require('express')
 
-// Require database
 const { MongoStore } = require('wwebjs-mongo');
 const mongoose = require('mongoose');
 const app = express()
@@ -21,7 +20,6 @@ const menu = `here is what bot can do 👇
 `
 
 console.log('server started ...')
-// Load the session data
 mongoose.connect(process.env['MONGGO_URL']).then(() => {
   const store = new MongoStore({ mongoose: mongoose });
   const client = new Client({
@@ -38,18 +36,15 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
   client.on('message', async msg => {
     const text = msg.body.toLowerCase() || '';
 
-    //check status
     if (text === 'p') {
       console.log('cek status')
       msg.reply('online 👌');
 
     } else if (text.includes(".ask")){
-      // handle chat ai
       console.log("ai handler requests")
       await chatAIHandler(text, client, msg)
 
     } else if (msg.hasMedia){
-      // handle foto lalu ubah jadi sticker
       console.log("convert foto to sticker handler")
       convertFotoToSticker(client, msg, MessageMedia)
       
@@ -63,7 +58,6 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
 
   });
 
-  // Handle login process
   client.on('qr', (qr) => {
     qrcode.generate(qr, { small: true });
   });
@@ -81,7 +75,6 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
     res.send('Online👌');
   })
 
-  
   app.listen(3000, () => console.log('app listening on port 3000'))
   client.initialize();
 });
