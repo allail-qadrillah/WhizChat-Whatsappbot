@@ -12,14 +12,19 @@ const app = express()
 mongoose.set('strictQuery', true);
 
 const menu = `here is what bot can do 👇
-👉 send image => convert to sticker
-👉 .ask_question => answer all questions
-     ex : .ask what is kuantum computer 
-👉 .imagine_prompt => generate image
-     ex : .imagine cute persian green cat, art photography
+send image => convert to sticker
+.ask_question => answer all questions
+ ex : .ask what is kuantum computer 
+
+masi pake server gratisan sobb🙏 gapunya duit buat sewa server 💀
 `
 
 console.log('server started ...')
+let today = new Date();
+let offset = 420;
+let jakartaTime = new Date(today.getTime() + offset * 60 * 1000);
+console.log(jakartaTime);
+
 mongoose.connect(process.env['MONGGO_URL']).then(() => {
   const store = new MongoStore({ mongoose: mongoose });
   const client = new Client({
@@ -58,6 +63,7 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
 
   });
 
+  
   client.on('qr', (qr) => {
     qrcode.generate(qr, { small: true });
   });
@@ -68,6 +74,18 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
 
   client.on('ready', () => {
     console.log('Client is ready!');
+    const number = "+6282277396265";
+
+  // Your message.
+ const text = "Hey john";
+
+  // Getting chatId from the number.
+  // we have to delete "+" from the beginning and add "@c.us" at the end of the number.
+ const chatId = number.substring(1) + "@c.us";
+
+ // Sending message.
+ client.sendMessage(chatId, text);
+
   });
 
   app.get('/', (req, res) => {
