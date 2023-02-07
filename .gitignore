@@ -3,6 +3,7 @@ node_modules
 .vscode
 temp.txt
 RemoteAuth.zip
+.env
 
 .breakpoints
 .replit

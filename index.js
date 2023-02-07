@@ -3,6 +3,8 @@ const { Client, RemoteAuth, MessageMedia } = require('whatsapp-web.js');
 const { chatAIHandler } = require('./features/chat_GPT');
 const { convertFotoToSticker } = require('./features/sticker');
 const { imageGeneratorAIHandler } = require('./features/textToImage');
+const { textToSpeechHandler } = require('./features/textToSpeech');
+const dotenv = require('dotenv');
 const express = require('express')
 
 const { MongoStore } = require('wwebjs-mongo');
@@ -10,6 +12,7 @@ const mongoose = require('mongoose');
 const app = express()
 
 mongoose.set('strictQuery', true);
+dotenv.config();
 
 const menu = `here is what bot can do 👇
 send image => convert to sticker
@@ -33,9 +36,9 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
       backupSyncIntervalMs: 300000
     }),
     // Hapus komentar ini jika ngejalanin di server // 
-    puppeteer: {
-      args: ['--no-sandbox']
-    }
+    // puppeteer: {
+    //   args: ['--no-sandbox']
+    // }
   });
 
   client.on('message', async msg => {
@@ -56,6 +59,10 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
     } else if (text.includes(".imagine")){
       console.log('Generate Image')
       await imageGeneratorAIHandler(text, client, msg, MessageMedia)   
+    
+    } else if (text.includes(".text")){
+      console.log('Text To Spech')
+      await textToSpeechHandler(msg, MessageMedia)   
 
     } else {
       client.sendMessage(msg.from, menu)
@@ -76,15 +83,9 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
     console.log('Client is ready!');
     const number = "+6282277396265";
 
-  // Your message.
- const text = "Hey john";
-
-  // Getting chatId from the number.
-  // we have to delete "+" from the beginning and add "@c.us" at the end of the number.
- const chatId = number.substring(1) + "@c.us";
-
- // Sending message.
- client.sendMessage(chatId, text);
+    const text = "Server Started!";
+    const chatId = number.substring(1) + "@c.us";
+    client.sendMessage(chatId, text);
 
   });
 
