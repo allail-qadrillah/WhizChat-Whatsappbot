@@ -4,7 +4,7 @@ const { chatAIHandler } = require('./features/chat_GPT');
 const { convertFotoToSticker } = require('./features/sticker');
 const { imageGeneratorAIHandler } = require('./features/textToImage');
 const { textToSpeechHandler } = require('./features/textToSpeech');
-const dotenv = require('dotenv');
+//const dotenv = require('dotenv');
 const express = require('express')
 
 const { MongoStore } = require('wwebjs-mongo');
