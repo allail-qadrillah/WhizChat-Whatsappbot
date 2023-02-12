@@ -17,15 +17,15 @@ mongoose.set('strictQuery', true);
 
 const menu = `ini yang bisa saya lakukan 👇
 
-send image = convert to sticker
+kirim foto = mengubah foto jadi sticker
 
-#ask_question = answer all questions
+#ask_question = menjawab semua pertanyaan 
  ex : #ask buatkan format chat dosen
  
-#speech_text = convert text to speech
+#speech_text = convert text ke suara
  ex : #speech hai, udah makan belom
 
-bingung cara makenya?
+masi bingung cara makenya?
 coba liat disini https://bit.ly/cara-pakai-whatsappbot
 `
 
