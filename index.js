@@ -15,12 +15,18 @@ const app = express()
 mongoose.set('strictQuery', true);
 // dotenv.config();
 
-const menu = `here is what i can do 👇
-send image => convert to sticker
-.ask_question => answer all questions
- ex : .ask what is kuantum computer 
+const menu = `ini yang bisa saya lakukan 👇
 
-masi pake server gratisan sobb🙏 gapunya duit buat sewa server 💀
+send image = convert to sticker
+
+#ask_question = answer all questions
+ ex : #ask what is kuantum computer 
+ 
+#speech_text = convert text to speech
+ ex : #speech hai, udah makan belom
+
+bingung cara makenya?
+coba liat disini https://bit.ly/cara-pakai-whatsappbot
 `
 
 console.log('server started ...')
@@ -46,19 +52,19 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
       console.log(`${ msg.from } cek status`)
       msg.reply('online 👌');
 
-    } else if (text.includes(".ask")){
-      console.log(`${ msg.from } GPT Hander`)
+    } else if (text.includes("#ask")){
+      console.log(`${ msg.from } GPT Handler`)
       await chatAIHandler(text, client, msg)
 
     } else if (msg.hasMedia){
       console.log(`${ msg.from } image to sticker`)
       convertFotoToSticker(client, msg, MessageMedia)
       
-    } else if (text.includes(".imagine")){
+    } else if (text.includes("#imagine")){
       console.log('Generate Image')
       await imageGeneratorAIHandler(text, client, msg, MessageMedia)   
     
-    } else if (text.includes(".speech")){
+    } else if (text.includes("#speech")){
       console.log(`${ msg.from } text to speech`) 
       await textToSpeechHandler(text, client, msg, MessageMedia)   
       
