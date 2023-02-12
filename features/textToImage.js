@@ -96,7 +96,7 @@ const imageGeneratorAIHandler = async (text, client, msg, MessageMedia) => {
   var media = await new MessageMedia("image/jpg", imageData, result.fileName)
   await client.sendMessage(msg.from, media, { caption: prompt })
   // hapus gambar biar hemat memory server
-  fs.unlinkSync(result.fileName);
+  return fs.unlinkSync(result.fileName);
 }
 
 module.exports = {
