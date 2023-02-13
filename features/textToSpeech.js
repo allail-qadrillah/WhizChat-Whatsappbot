@@ -34,17 +34,20 @@ const textToSpeechHandler = async (text, client, msg, MessageMedia) => {
     return client.sendMessage(msg.from, response.message)
   }
 
+  setTimeout(()=>{
+    
   try {
-    const media = await MessageMedia.fromFilePath(`${pathVoice}.mp3`)
-    await client.sendMessage(msg.from, media)
-    return fs.unlinkSync(`${pathVoice}.mp3`); 
+    const media = MessageMedia.fromFilePath(`${pathVoice}.mp3`)
+    client.sendMessage(msg.from, media)
     
   } catch (error) {
     client.sendMessage(msg.from, "gagal mengubah teks jadi sticker 😢")
     client.sendMessage(msg.from, "silahkan coba lagi ✨")
   }
+    }, 3000) 
 
    
+  return fs.unlinkSync(`${pathVoice}.mp3`); 
 }
 
 module.exports = {

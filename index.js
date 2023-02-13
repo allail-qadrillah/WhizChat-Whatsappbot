@@ -5,15 +5,15 @@ const { convertFotoToSticker } = require('./features/sticker');
 const { imageGeneratorAIHandler } = require('./features/textToImage');
 const { textToSpeechHandler } = require('./features/textToSpeech');
 const { getJakartaTime } = require('./utilities')
-//const dotenv = require('dotenv');
 const express = require('express')
+//const dotenv = require('dotenv');
+// dotenv.config();
 
 const { MongoStore } = require('wwebjs-mongo');
 const mongoose = require('mongoose');
 const app = express()
 
 mongoose.set('strictQuery', true);
-// dotenv.config();
 
 const menu = `ini yang bisa saya lakukan 👇
 
