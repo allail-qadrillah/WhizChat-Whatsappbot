@@ -12,8 +12,17 @@ const splitCommand = (text) => {
   return text.join(' ')
 }
 
+const splitCommandWithParam = (text) => {
+  var text = text.split(' ')
+  
+  return {param: text[1], 
+          prompt: text.slice(2).join(' ')
+  }
+}
+
 
 module.exports = {
   getJakartaTime,
-  splitCommand
+  splitCommand,
+  splitCommandWithParam,
 }

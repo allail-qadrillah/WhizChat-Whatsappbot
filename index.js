@@ -3,7 +3,7 @@ const { Client, RemoteAuth, MessageMedia } = require('whatsapp-web.js');
 const { chatAIHandler } = require('./features/chat_GPT');
 const { convertFotoToSticker } = require('./features/sticker');
 const { imageGeneratorAIHandler } = require('./features/textToImage');
-const { textToSpeechHandler } = require('./features/textToSpeech');
+const { textToSpeechHandler, fakeVoiceTextToSpeechHandler } = require('./features/textToSpeech');
 const { getJakartaTime } = require('./utilities')
 const express = require('express')
 //const dotenv = require('dotenv');
@@ -67,6 +67,10 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
     } else if (text.includes("#speech")){
       console.log(`${ msg.from } text to speech`) 
       await textToSpeechHandler(text, client, msg, MessageMedia)   
+      
+    } else if (text.includes("#fakespeech")){
+      console.log(`${ msg.from } fake text to speech`) 
+      await fakeVoiceTextToSpeechHandler(text, client, msg, MessageMedia)   
       
     }else {
       client.sendMessage(msg.from, menu)
