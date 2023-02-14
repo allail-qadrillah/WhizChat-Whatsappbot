@@ -20,7 +20,7 @@ const menu = `ini yang bisa saya lakukan 👇
 kirim foto = mengubah foto jadi sticker
 
 #ask_question = menjawab semua pertanyaan 
- ex : #ask buatkan format chat dosen
+ ex : #ask buatkan format chat dengan dosen
  
 #speech_text = convert text ke suara
  ex : #speech hai, udah makan belom
