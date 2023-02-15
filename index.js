@@ -41,6 +41,7 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
     }),
     // Hapus komentar dibawah jika ngejalanin di server // 
     puppeteer: {
+      headless: true,
       args: ['--no-sandbox']
     }
   });
