@@ -25,7 +25,7 @@ kirim foto = mengubah foto jadi sticker
 #speech_text = convert text ke suara
  ex : #speech hai, udah makan belom
 
-masi bingung cara makenya?
+masih bingung cara makenya?
 coba liat disini https://bit.ly/cara-pakai-whatsappbot
 `
 
@@ -45,20 +45,23 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
       args: ['--no-sandbox']
     }
   });
-
+  
   client.on('message', async msg => {
     const text = msg.body.toLowerCase() || '';
+    const chat = await msg.getChat()
 
     if (text === 'p') {
-      console.log(`${ msg.from } cek status`)
+      chat.sendStateTyping()
+      console.log(`${ msg._data.notifyName } | ${ msg.deviceType } cek status`)
       msg.reply('online 👌');
 
     } else if (text.includes("#ask")){
-      console.log(`${ msg.from } GPT Handler`)
+      chat.sendStateTyping()
+      console.log(`${ msg._data.notifyName } | ${ msg.deviceType } GPT Handler`)
       await chatAIHandler(text, client, msg)
 
     } else if (msg.hasMedia){
-      console.log(`${ msg.from } image to sticker`)
+      console.log(`${ msg._data.notifyName } | ${ msg.deviceType } image to sticker`)
       convertFotoToSticker(client, msg, MessageMedia)
       
     } else if (text.includes("#imagine")){
@@ -66,14 +69,16 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
       await imageGeneratorAIHandler(text, client, msg, MessageMedia)   
     
     } else if (text.includes("#speech")){
-      console.log(`${ msg.from } text to speech`) 
+      chat.sendStateRecording()
+      console.log(`${ msg._data.notifyName } | ${ msg.deviceType } text to speech`) 
       await textToSpeechHandler(text, client, msg, MessageMedia)   
       
     } else if (text.includes("#fakespeech")){
-      console.log(`${ msg.from } fake text to speech`) 
+      console.log(`${ msg._data.notifyName } fake text to speech`) 
       await fakeVoiceTextToSpeechHandler(text, client, msg, MessageMedia)   
       
     }else {
+      chat.sendStateTyping()
       client.sendMessage(msg.from, menu)
     }
 
@@ -99,7 +104,6 @@ mongoose.connect(process.env['MONGGO_URL']).then(() => {
   });
 
   app.get('/', (req, res) => {
-    console.log('status 200')     
     res.send('Online👌');
   })
 
