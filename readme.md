@@ -52,15 +52,15 @@ WhatsApp-Bot adalah alat otomatis yang dapat digunakan untuk berkomunikasi denga
 
 ---
 
-<aside>
+
 ⚠️ Bot terkadang slow response. hal ini dikarenakan masih dijalankan di server yang gratis. karna developernya gapunya duit😢
 
-</aside>
 
-<aside>
+
+
 ⚠️ biasanya user yang baru mengirimkan pesan untuk pertama kali tidak langsung diresponse dengan cepat
 
-</aside>
+
 
 ### Tentang Developer 🧑‍💻
 
