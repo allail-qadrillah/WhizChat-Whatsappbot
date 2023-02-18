@@ -45,7 +45,7 @@ const textToSpeechHandler = async (text, client, msg, MessageMedia) => {
       return fs.unlinkSync(`${pathVoice}.mp3`); 
       
     } catch (error) {
-      client.sendMessage(msg.from, "gagal mengubah teks jadi sticker 😢")
+      client.sendMessage(msg.from, "gagal mengubah teks jadi audio 😢")
       client.sendMessage(msg.from, "silahkan coba lagi ✨")
     }
   }, 3000)
