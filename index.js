@@ -17,7 +17,8 @@ mongoose.set('strictQuery', true);
 
 const menu = `ini yang bisa saya lakukan 👇
 
-kirim foto = mengubah foto jadi sticker
+kirim foto = ngubah foto jadi sticker
+kirim video maks 5 detik = jadiin sticker GIF
 
 #ask_question = menjawab semua pertanyaan 
  ex : #ask buatkan format chat dengan dosen
