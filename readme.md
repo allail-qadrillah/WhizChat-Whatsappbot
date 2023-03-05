@@ -10,11 +10,7 @@ WhatsApp-Bot adalah alat otomatis yang dapat digunakan untuk berkomunikasi denga
     
     Fitur Convert Image menjadi Sticker memungkinkan Anda untuk mengubah gambar menjadi stiker. Ini adalah cara yang mudah dan cepat untuk mengirim stiker kepada teman dan keluarga Anda. Anda dapat mengambil gambar dari galeri dan mengubahnya menjadi stiker yang kemudian dapat dikirimkan dan disimpan. 
     
-    Cara menggunakannya adalah anda hanya perlu mengirimkan gambar ke nomer whatsapp bot dan bot akan mengubah gambar tersebut menjadi sticker
-    
-    contohnya 👇
-    
-    ![Untitled](https://s3.us-west-2.amazonaws.com/secure.notion-static.com/ea216736-2b2b-4cfa-8c9f-8fc893a6f2e8/Untitled.png?X-Amz-Algorithm=AWS4-HMAC-SHA256&X-Amz-Content-Sha256=UNSIGNED-PAYLOAD&X-Amz-Credential=AKIAT73L2G45EIPT3X45%2F20230216%2Fus-west-2%2Fs3%2Faws4_request&X-Amz-Date=20230216T143436Z&X-Amz-Expires=86400&X-Amz-Signature=59014f8012bede49db2b79a197ba8851f28839aff7111efc08f6132505a31823&X-Amz-SignedHeaders=host&response-content-disposition=filename%3D%22Untitled.png%22&x-id=GetObject)
+    Cara menggunakannya adalah anda hanya perlu mengirimkan gambar ke nomer whatsapp bot dan bot akan mengubah gambar tersebut menjadi sticker 
     
 - **Menjawab Semua Pertanyaan**
     
