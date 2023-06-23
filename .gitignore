@@ -5,7 +5,3 @@ temp.txt
 RemoteAuth.zip
 .env
 
-.breakpoints
-.replit
-poetry.lock
-replit.nix
