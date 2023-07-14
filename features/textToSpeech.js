@@ -91,14 +91,14 @@ const fakeVoiceTextToSpeechHandler = async (text, client, msg, MessageMedia) => 
   // const media = await MessageMedia.fromFilePath("6282277396265@c.us.mp3")
   // console.log(media)
 
-  const mediaFile = fs.readFileSync('./6282277396265@c.us.mp3');
+  const mediaFile = fs.readFileSync('./test.wav');
   const mediaFileBase64 = mediaFile.toString('base64');
   media = new MessageMedia(
     'audio/mp3',
     mediaFileBase64,
-    '6282277396265@c.us.mp3'
+    'test.mp3'
 );
-  await client.sendMessage(msg.from, media, { sendAudioAsVoice: false } )
+  await client.sendMessage(msg.from, media, { sendAudioAsVoice: true } )
   // setTimeout(() => {
   //   try {
   //     // const media = MessageMedia.fromFilePath(`${pathVoice}.mp3`)
